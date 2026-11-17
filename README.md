@@ -53,9 +53,11 @@ Node 18+ is required. No API keys, no backend, no database — the app is a stat
 
 ---
 
-## Deploy to GitHub Pages (3 steps)
+## Deploy to GitHub Pages
 
-1. **Create the repository** on GitHub (public or private), then push this folder:
+Live: <https://julianatseng.github.io/sponge-shift-v2/>
+
+1. **Create an empty repository** on GitHub, then push this folder:
 
    ```bash
    git init
@@ -66,8 +68,13 @@ Node 18+ is required. No API keys, no backend, no database — the app is a stat
    git push -u origin main
    ```
 
-2. **Turn on Pages**: repository → **Settings** → **Pages** → *Build and deployment* →
-   **Source: GitHub Actions**.
+   Over HTTPS GitHub needs a Personal Access Token carrying **both `repo` and `workflow`** scopes —
+   `workflow` is mandatory because this repository ships `.github/workflows/deploy.yml`.
+
+2. **Pages needs no manual setup.** The workflow's `actions/configure-pages` step has
+   `enablement: true`, so it creates the Pages site itself on the first run. If that step ever fails,
+   set it by hand: repository → **Settings** → **Pages** → *Build and deployment* →
+   **Source: GitHub Actions**, then re-run the job.
 
 3. **Wait for the run.** The included workflow (`.github/workflows/deploy.yml`) builds and publishes on
    every push to `main`. The site appears at
