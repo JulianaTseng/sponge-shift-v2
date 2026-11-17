@@ -34,13 +34,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          # Creates the Pages site on the first run instead of failing with
-          # "Get Pages site failed / Not Found" when the repo has never had Pages on.
-          enablement: true
-
       - name: Upload artefact
         uses: actions/upload-pages-artifact@v3
         with:

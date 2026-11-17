@@ -71,10 +71,10 @@ Live: <https://julianatseng.github.io/sponge-shift-v2/>
    Over HTTPS GitHub needs a Personal Access Token carrying **both `repo` and `workflow`** scopes —
    `workflow` is mandatory because this repository ships `.github/workflows/deploy.yml`.
 
-2. **Pages needs no manual setup.** The workflow's `actions/configure-pages` step has
-   `enablement: true`, so it creates the Pages site itself on the first run. If that step ever fails,
-   set it by hand: repository → **Settings** → **Pages** → *Build and deployment* →
-   **Source: GitHub Actions**, then re-run the job.
+2. **Turn on Pages once**: repository → **Settings** → **Pages** → *Build and deployment* →
+   **Source: GitHub Actions**. This is a repo-admin setting, so it cannot be automated from the
+   workflow — the `GITHUB_TOKEN` is not allowed to create a Pages site. If you turn it on after the
+   first push, re-run the failed deploy job.
 
 3. **Wait for the run.** The included workflow (`.github/workflows/deploy.yml`) builds and publishes on
    every push to `main`. The site appears at
